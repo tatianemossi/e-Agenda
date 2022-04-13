@@ -1,6 +1,7 @@
 ﻿using e_Agenda.ConsoleApp.Compartilhado;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace e_Agenda.ConsoleApp.MóduloContato
@@ -88,18 +89,29 @@ namespace e_Agenda.ConsoleApp.MóduloContato
             if (tipoVisualizacao == "Tela")
                 MostrarTitulo("Visualização de Contatos");
 
-            List<Contato> Contatos = _repositorioContato.SelecionarTodos();
+            List<Contato> contatos = _repositorioContato.SelecionarTodos();
 
-            if (Contatos.Count == 0)
+            if (contatos.Count == 0)
             {
                 _notificador.ApresentarMensagem("Nenhum Contato disponível.", TipoMensagemEnum.Atencao);
                 return false;
             }
 
+            contatos = contatos.OrderBy(x => x.Cargo).ToList();
+
+            var cargoAgrupador = contatos.First().Cargo;
+
             MostrarTitulo("Contatos: ");
-            foreach (var Contato in Contatos)
+            Console.WriteLine($"Cargo: {cargoAgrupador}");
+            foreach (var contato in contatos)
             {
-                Console.WriteLine(Contato.ToString());
+                if (contato.Cargo != cargoAgrupador)
+                {
+                    cargoAgrupador = contato.Cargo;
+                    Console.WriteLine($"Cargo: {cargoAgrupador}");
+                }
+
+                Console.WriteLine(contato.ToString());
                 Console.WriteLine();
                 Console.WriteLine();
             }
