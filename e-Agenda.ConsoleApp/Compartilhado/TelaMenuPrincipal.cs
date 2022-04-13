@@ -1,4 +1,5 @@
-﻿using e_Agenda.ConsoleApp.MóduloTarefa;
+﻿using e_Agenda.ConsoleApp.MóduloContato;
+using e_Agenda.ConsoleApp.MóduloTarefa;
 using System;
 
 namespace e_Agenda.ConsoleApp.Compartilhado
@@ -8,11 +9,17 @@ namespace e_Agenda.ConsoleApp.Compartilhado
         private RepositorioTarefa _repositorioTarefa;
         private TelaCadastroTarefa _telaCadastroTarefa;
 
+        private RepositorioContato _repositorioContato;
+        private TelaCadastroContato _telaCadastroContato;
+
 
         public TelaMenuPrincipal(Notificador notificador)
         {
             _repositorioTarefa = new RepositorioTarefa();
-            _telaCadastroTarefa = new TelaCadastroTarefa(_repositorioTarefa, notificador);            
+            _telaCadastroTarefa = new TelaCadastroTarefa(_repositorioTarefa, notificador);
+
+            _repositorioContato = new RepositorioContato();
+            _telaCadastroContato = new TelaCadastroContato(_repositorioContato, notificador);
         }
 
         public string MostrarOpcoes()
@@ -20,6 +27,8 @@ namespace e_Agenda.ConsoleApp.Compartilhado
             MostrarTitulo("Aplicativo e_Agenda 1.0");
 
             Console.WriteLine("Digite 1 para Gerenciar Tarefas");
+
+            Console.WriteLine("Digite 2 para Gerenciar Contatos");
 
             Console.WriteLine("Digite s para sair");
 
@@ -36,6 +45,9 @@ namespace e_Agenda.ConsoleApp.Compartilhado
 
             if (opcao == "1")
                 tela = _telaCadastroTarefa;
+
+            else if (opcao == "2")
+                tela = _telaCadastroContato;
 
             return tela;
         }

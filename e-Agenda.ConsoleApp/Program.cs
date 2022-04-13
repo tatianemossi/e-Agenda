@@ -1,5 +1,7 @@
 ﻿using e_Agenda.ConsoleApp.Compartilhado;
+using e_Agenda.ConsoleApp.MóduloContato;
 using e_Agenda.ConsoleApp.MóduloTarefa;
+using System;
 
 namespace e_Agenda.ConsoleApp
 {
@@ -19,9 +21,33 @@ namespace e_Agenda.ConsoleApp
 
                 string opcaoSelecionada = telaSelecionada.MostrarOpcoes();
 
-                if (telaSelecionada is ITelaCadastravel)
+                if (telaSelecionada is TelaCadastroTarefa)
                     GerenciarCadastroTarefa(telaSelecionada, opcaoSelecionada);
+
+                else if (telaSelecionada is TelaCadastroContato)
+                    GerenciarCadastroContato(telaSelecionada, opcaoSelecionada);
+
             }
+        }
+
+        private static void GerenciarCadastroContato(TelaBase telaSelecionada, string opcaoSelecionada)
+        {
+            var telaCadastroContato = telaSelecionada as TelaCadastroContato;
+
+            if (telaCadastroContato is null)
+                return;
+
+            if (opcaoSelecionada == "1")
+                telaCadastroContato.Inserir();
+
+            else if (opcaoSelecionada == "2")
+                telaCadastroContato.Editar();
+
+            else if (opcaoSelecionada == "3")
+                telaCadastroContato.Excluir();
+
+            else if (opcaoSelecionada == "4")
+                telaCadastroContato.Visualizar("Tela");
         }
 
         public static void GerenciarCadastroTarefa(TelaBase telaSelecionada, string opcaoSelecionada)
