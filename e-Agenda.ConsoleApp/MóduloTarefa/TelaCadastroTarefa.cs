@@ -49,19 +49,31 @@ namespace e_Agenda.ConsoleApp.MóduloTarefa
         {
             MostrarTitulo("Editando Tarefa");
 
-            bool temTarefasCadastradas = Visualizar("Pesquisando");
+            bool temTarefasCadastradas = _repositorioTarefa.ExistemRegistros();
 
             if (temTarefasCadastradas == false)
             {
                 _notificador.ApresentarMensagem("Nenhuma tarefa cadastrada para editar.", TipoMensagemEnum.Atencao);
                 return;
             }
+            else
+            {
+                var tarefas = _repositorioTarefa.SelecionarTodos();
+                foreach (var tarefa in tarefas)
+                {
+                    Console.WriteLine(tarefa.VisualizarResumo());
+                }
+            }
 
-            int numeroTarefa = ObterNumero();
+            int idTarefa = ObterId();
 
-            Tarefa tarefaAtualizada = ObterTarefa();
+            Tarefa tarefaAtualizada = _repositorioTarefa.SelecionarRegistro(idTarefa);
 
-            bool conseguiuEditar = _repositorioTarefa.Editar(numeroTarefa, tarefaAtualizada);
+            Console.Write("Digite o título: ");
+            tarefaAtualizada.Titulo = Console.ReadLine();
+            tarefaAtualizada.Prioridade = ObterPrioridade();
+
+            bool conseguiuEditar = _repositorioTarefa.Editar(idTarefa, tarefaAtualizada);
 
             if (!conseguiuEditar)
                 _notificador.ApresentarMensagem("Não foi possível editar.", TipoMensagemEnum.Erro);
@@ -81,7 +93,7 @@ namespace e_Agenda.ConsoleApp.MóduloTarefa
                 return;
             }
 
-            int numeroTarefa = ObterNumero();
+            int numeroTarefa = ObterId();
 
             bool conseguiuExcluir = _repositorioTarefa.Excluir(numeroTarefa);
 
@@ -151,7 +163,7 @@ namespace e_Agenda.ConsoleApp.MóduloTarefa
 
         }
 
-        public int ObterNumero()
+        public int ObterId()
         {
             int numero;
             bool numeroEncontrado;

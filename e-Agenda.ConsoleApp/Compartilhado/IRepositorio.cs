@@ -12,5 +12,6 @@ namespace e_Agenda.ConsoleApp.Compartilhado
         T SelecionarRegistro(int idSelecionado);
         List<T> SelecionarTodos();
         void SalvarDados();
+        bool ExistemRegistros();
     }
 }

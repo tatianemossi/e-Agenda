@@ -33,6 +33,14 @@ namespace e_Agenda.ConsoleApp.MóduloTarefa
             "Data da Conclusão: " + DataConclusao;
         }
 
+        public string VisualizarResumo()
+        {
+            return "Id: " + Id + Environment.NewLine +
+            "Título: " + Titulo + Environment.NewLine +
+            "Prioridade: " + Prioridade + Environment.NewLine +
+            "Percentual Concluído: " + PercentualConcluido + "%" + Environment.NewLine;
+        }
+
         public int ObterIdSubtarefaDisponivel()
         {
             var ultimoId = Subtarefas.OrderBy(x => x.Id).Select(x => x.Id).LastOrDefault();

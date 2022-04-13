@@ -83,5 +83,10 @@ namespace e_Agenda.ConsoleApp.Compartilhado
         {
             GerenciadorBackup<T>.SalvarDados(registros);
         }
+
+        public bool ExistemRegistros()
+        {
+            return registros.Any();
+        }
     }
 }
