@@ -1,9 +1,10 @@
 ﻿using e_Agenda.ConsoleApp.Compartilhado;
+using e_Agenda.ConsoleApp.MóduloTarefa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace e_Agenda.ConsoleApp.MóduloTarefa
+namespace e_Agenda.ConsoleApp.ModuloTarefa
 {
     public class TelaCadastroTarefa : TelaBase, ITelaCadastravel
     {
@@ -248,7 +249,7 @@ namespace e_Agenda.ConsoleApp.MóduloTarefa
                 case "3":
                     return PrioridadeEnum.Baixa;
 
-                default: 
+                default:
                     return PrioridadeEnum.Normal;
             }
         }

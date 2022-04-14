@@ -1,7 +1,7 @@
 ﻿using e_Agenda.ConsoleApp.Compartilhado;
+using e_Agenda.ConsoleApp.ModuloCompromisso;
 using e_Agenda.ConsoleApp.MóduloContato;
-using e_Agenda.ConsoleApp.MóduloTarefa;
-using System;
+using e_Agenda.ConsoleApp.ModuloTarefa;
 
 namespace e_Agenda.ConsoleApp
 {
@@ -27,12 +27,37 @@ namespace e_Agenda.ConsoleApp
                 else if (telaSelecionada is TelaCadastroContato)
                     GerenciarCadastroContato(telaSelecionada, opcaoSelecionada);
 
+                else if (telaSelecionada is TelaCadastroCompromisso)
+                    GerenciarCadastroCompromisso(telaSelecionada, opcaoSelecionada);
             }
+        }
+
+        private static void GerenciarCadastroCompromisso(TelaBase telaSelecionada, string opcaoSelecionada)
+        {
+            var telaCadastroCompromisso = telaSelecionada as TelaCadastroCompromisso;
+
+            if (telaCadastroCompromisso is null)
+                return;
+
+            if (opcaoSelecionada == "1")
+                telaCadastroCompromisso.Inserir();
+
+            else if (opcaoSelecionada == "2")
+                telaCadastroCompromisso.Editar();
+
+            else if (opcaoSelecionada == "3")
+                telaCadastroCompromisso.Excluir();
+
+            else if (opcaoSelecionada == "4")
+                telaCadastroCompromisso.Visualizar("Tela");
+
+            else if (opcaoSelecionada == "5")
+                telaCadastroCompromisso.FiltrarCompromissos();
         }
 
         private static void GerenciarCadastroContato(TelaBase telaSelecionada, string opcaoSelecionada)
         {
-            var telaCadastroContato = telaSelecionada as TelaCadastroContato;
+            var telaCadastroContato = telaSelecionada as ITelaCadastravel;
 
             if (telaCadastroContato is null)
                 return;
@@ -50,7 +75,7 @@ namespace e_Agenda.ConsoleApp
                 telaCadastroContato.Visualizar("Tela");
         }
 
-        public static void GerenciarCadastroTarefa(TelaBase telaSelecionada, string opcaoSelecionada)
+        private static void GerenciarCadastroTarefa(TelaBase telaSelecionada, string opcaoSelecionada)
         {
             var telaCadastroTarefa = telaSelecionada as TelaCadastroTarefa;
 

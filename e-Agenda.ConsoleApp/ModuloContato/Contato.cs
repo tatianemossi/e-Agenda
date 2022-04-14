@@ -22,7 +22,7 @@ namespace e_Agenda.ConsoleApp.MóduloContato
             "Nome: " + Nome + Environment.NewLine +
             "Email: " + Email + Environment.NewLine +
             "Telefone: " + Telefone + Environment.NewLine +
-            "Empresa: " + Empresa + "%" + Environment.NewLine +
+            "Empresa: " + Empresa + Environment.NewLine +
             "Cargo: " + Cargo;
         }
 

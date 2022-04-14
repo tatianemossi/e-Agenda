@@ -70,13 +70,13 @@ namespace e_Agenda.ConsoleApp.MóduloContato
 
             if (temContatosRegistrados == false)
             {
-                _notificador.ApresentarMensagem("Nenhum Contato cadastrada para excluir.", TipoMensagemEnum.Atencao);
+                _notificador.ApresentarMensagem("Nenhum Contato cadastrado para excluir.", TipoMensagemEnum.Atencao);
                 return;
             }
 
-            int numeroContato = ObterId();
+            int idContato = ObterId();
 
-            bool conseguiuExcluir = _repositorioContato.Excluir(numeroContato);
+            bool conseguiuExcluir = _repositorioContato.Excluir(idContato);
 
             if (!conseguiuExcluir)
                 _notificador.ApresentarMensagem("Não foi possível excluir.", TipoMensagemEnum.Erro);
@@ -113,14 +113,12 @@ namespace e_Agenda.ConsoleApp.MóduloContato
 
                 Console.WriteLine(contato.ToString());
                 Console.WriteLine();
-                Console.WriteLine();
             }
 
             Console.ReadLine();
 
             return true;
         }
-
 
         public int ObterId()
         {
