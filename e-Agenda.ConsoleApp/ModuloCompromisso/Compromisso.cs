@@ -21,7 +21,7 @@ namespace e_Agenda.ConsoleApp.ModuloCompromisso
             "Data: " + Data + Environment.NewLine +
             "Hora de Início: " + HoraInicio + Environment.NewLine +
             "Hora de Término: " + HoraTermino + Environment.NewLine +
-            "Contato: " + Contato;
+            "Contato: " + Contato?.Nome + "- Cargo: " + Contato?.Cargo;
         }
 
         public void AtualizarDataComHoraMinuto()
